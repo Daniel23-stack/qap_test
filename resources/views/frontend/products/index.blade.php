@@ -1,4 +1,5 @@
 @extends('layouts.frontend')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -12,104 +13,204 @@
                     </div>
                 </div>
             @endcan
-            <div class="card">
-                <div class="card-header">
-                    {{ trans('cruds.product.title_singular') }} {{ trans('global.list') }}
-                </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-Product">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.product.fields.id') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.name') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.description') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.price') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.category') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.tag') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.photo') }}
-                                    </th>
-                                    <th>
-                                        &nbsp;
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($products as $key => $product)
-                                    <tr data-entry-id="{{ $product->id }}">
-                                        <td>
-                                            {{ $product->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->description ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->price ?? '' }}
-                                        </td>
-                                        <td>
-                                            @foreach($product->categories as $key => $item)
-                                                <span>{{ $item->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach($product->tags as $key => $item)
-                                                <span>{{ $item->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @if($product->photo)
-                                                <a href="{{ $product->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                                    <img src="{{ $product->photo->getUrl('thumb') }}">
-                                                </a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @can('product_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('frontend.products.show', $product->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
+            <!--Add Product code hereS-->
+    <main id="main" class="main-site left-sidebar">
 
-                                            @can('product_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.products.edit', $product->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
+		<div class="container">
 
-                                            @can('product_delete')
-                                                <form action="{{ route('frontend.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
+			<div class="row">
 
-                                        </td>
+				<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
 
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+					<div class="row">
+
+						<ul class="product-list grid-products equal-container">
+
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_20.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_22.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_10.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_01.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_21.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_15.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_17.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_05.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_07.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_02.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_09.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+								<div class="product product-style-3 equal-elem ">
+									<div class="product-thumnail">
+										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<figure><img src="assets/images/products/digital_06.jpg" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										</a>
+									</div>
+									<div class="product-info">
+										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+										<div class="wrap-price"><span class="product-price">R250.00</span></div>
+										<a href="#" class="btn add-to-cart">Add To Cart</a>
+									</div>
+								</div>
+							</li>
+
+						</ul>
+
+					</div>
+				</div><!--end main products area-->
+
+
+				</div><!--end sitebar-->
+
+			</div><!--end row-->
+
+		</div><!--end container-->
+
+	</main>
+
+            <!--end test of product page-->
 
         </div>
     </div>
