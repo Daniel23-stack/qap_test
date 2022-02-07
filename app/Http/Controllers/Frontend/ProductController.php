@@ -23,7 +23,8 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['categories', 'tags', 'media'])->get();
+        //$products = Product::with(['categories', 'tags', 'media'])->get();
+        $products = Product::inRandomOrder()->take(9)->get();
 
         return view('frontend.products.index', compact('products'));
     }
@@ -87,13 +88,11 @@ class ProductController extends Controller
         return redirect()->route('frontend.products.index');
     }
 
-    public function show(Product $product)
+    public function show($slug)
     {
-        abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $product->load('categories', 'tags');
-
-        return view('frontend.products.show', compact('product'));
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('frontend.products.show')->with('product', $product);
+        
     }
 
     public function destroy(Product $product)
@@ -122,5 +121,11 @@ class ProductController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function cart()
+    {
+        return view('frontend.products.cart');
+        
     }
 }

@@ -18,7 +18,7 @@ class Product extends Model implements HasMedia
     use Auditable;
     use HasFactory;
 
-    public $table = 'products';
+    public $table = 'merchandises';
 
     protected $appends = [
         'photo',

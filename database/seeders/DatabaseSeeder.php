@@ -8,12 +8,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call([
-            PermissionsTableSeeder::class,
-            RolesTableSeeder::class,
-            PermissionRoleTableSeeder::class,
-            UsersTableSeeder::class,
-            RoleUserTableSeeder::class,
-        ]);
+        \App\Models\Category::factory(6)->create();
+        \App\Models\merchandise::factory(22)->create();
+        
     }
 }

@@ -62,6 +62,12 @@
                                     {{ __('Dashboard') }}
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart">
+                                    {{ __('Cart') }}
+                                </a>
+                            </li>
                         @endguest
                     </ul>
 
